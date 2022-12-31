@@ -1,0 +1,49 @@
+#-----------------------------------------------------------------------------
+#
+#  Define here log messages one per line. 
+#  Syntax is:
+#
+#  <msgs> ::= ( <msg> '\n' )+
+#
+#  <msg> ::= [level:<int>] <msg_name>:<msg_type>  (<arg_name>:<arg_type>)*
+#
+#  <msg_name> ::= <ID>
+#  <msg_type> ::= 'event' | 'flag'
+#
+#  <arg_name> ::= <ID>
+#  <arg_type> ::= 'u32'
+#
+#  <ID> ::= [A-Za-z0-9_]+
+#
+#  Semantics:
+#
+#  level is optional, by default 1. gen_log.py --dbg_level n will force
+#          messages with level <= n to be issued (rest ignored)
+#          By default min_dbg_level is 1 so log messages of level 0/1 are 
+#          logged and messages with level 2 or higher are ignored. The level
+#          is passed at code instrumentation time (gen_log.py generates macros
+#          with the level for the message and the level desired) so there is
+#          no run-time overhead in messages not logged.
+#
+#
+#  'event' type of messages have no duration. Happen at a specific point of time
+#  'flag'  type of events can be 0 or 1. They can be used to measure time
+#          durations (set to 1 at the beginning, set to 0 at the end for 
+#          instance). The duration can be visualized graphicaly
+#
+#  Messages of either type can optionally have extra arguments (currently only 
+#  32 bit each). The arguments get dumped on the textual decoded output of the
+#  log
+#--------------------------------------------------------------------------------
+
+# misc
+level:1 some_event:event 
+level:1 long_comp_body:flag 
+
+# stop/clear feature events
+level:1 iter_start:event
+level:1 iter_stop:event
+
+level:0 msg1:flag a:u32
+level:1 msg2:flag b:u32
+level:2 msg3:flag c:u32
