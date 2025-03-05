@@ -62,6 +62,19 @@ static __inline__ uint64_t rdtsc(void)
     return ((uint64_t)lo) | (((uint64_t)hi) << 32);
 }
 
+#elif defined(__ARM_ARCH_ISA_A64)
+
+// see https://stackoverflow.com/questions/40454157/is-there-an-equivalent-instruction-to-rdtsc-in-arm
+
+// Adapted from: https://github.com/cloudius-systems/osv/blob/master/arch/aarch64/arm-clock.cc
+static inline uint64_t rdtsc(void) {
+    //Please note we read CNTVCT cpu system register which provides
+    //the accross-system consistent value of the virtual system counter.
+    uint64_t cntvct;
+    asm volatile ("mrs %0, cntvct_el0; " : "=r"(cntvct) :: "memory");
+    return cntvct;
+}
+
 #else
 
 #error "No implementation of rdtsc() available for current architecture"
