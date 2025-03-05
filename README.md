@@ -63,7 +63,7 @@ processes `msgs.txt` into `msgs_auto.h`
 
     $ make run
 
-Runs the application built above in the directory 'rundir' dumping stdout of this application into
+Runs the application built above in the directory `rundir` dumping stdout of this application into
 `rundir/example_out.log`. Amonght other things this file will contain a trace buffer dump for later
 post-processing. This is an example of such a trace buffer dump (note that the 1st 5 lines are
 informative and not parsed by the scripts).
