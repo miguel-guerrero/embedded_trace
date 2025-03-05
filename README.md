@@ -234,7 +234,10 @@ options:
   2) To postprocess a trace buffer dump into either `rpt` or `vcd` format after application execution and buffer dump. E.g 
 
     $ scripts/gen_log.py -msgs msgs.txt -freq_in_mhz 100.0 -output_style=rpt -hex_log example.log > example.rpt
-    
+
+  Note that in the example above a frequency of 100.0 MHz is assumed to convert to clock tick counts to uSecs. The Makefile
+  provides TIME_STAMP_RATE_MHZ that can be customized for this purpose.
+  
   This is an example of such a report (`rpt` format)
   
   ```
@@ -272,6 +275,9 @@ If you wanted to see this graphically, generate a `vcd` file:
 
     $ scripts/gen_log.py -msgs msgs.txt -freq_in_mhz 100.0 -output_style=vcd -hex_log example.log > example.vcd
     
+Again, note that in the example above a frequency of 100.0 MHz is assumed to convert to clock tick counts to uSecs. The Makefile
+provides TIME_STAMP_RATE_MHZ that can be customized for this purpose.
+
 Assuming you have `gtkwave` installed in your system, you can open the file as (assuming MacOs)
 
     $ open example.vcd
