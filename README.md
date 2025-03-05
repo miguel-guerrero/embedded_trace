@@ -18,8 +18,8 @@ this file when processed will generate a set of macros in a `.h` file
 (`msgs_auto.h`). These macros are to be inserted by the user in its 
 code in the appropriate places to log intended events / calls etc.
 
-The dumped trace has ASCII hex format and not directly readable. It
-is inteded to be post-processed on a host machine.
+The trace is dumped out from the embedded system in ASCII hex format and 
+is not directly readable. It is inteded to be post-processed on a host machine.
 
 The trace can be post-processed mainly into 2 formats:
 
